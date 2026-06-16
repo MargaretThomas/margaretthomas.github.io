@@ -375,7 +375,27 @@ h1 {
   box-shadow: 0 2px 3px rgb(41 43 42 / 28%);
 }
 
+.note-project {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.note-project:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--teal);
+}
+
 .note-signoff {
+  display: block;
   color: var(--ink-soft);
   font-size: 0.72rem;
   font-weight: 700;
