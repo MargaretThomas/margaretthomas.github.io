@@ -560,7 +560,7 @@ h1 {
 }
 
 .mark-blue {
-  background: var(--blue)
+  background: var(--blue);
 }
 
 .mark-lilac {
@@ -611,6 +611,92 @@ h1 {
 
 .project-links a {
   margin-right: 0.8rem;
+}
+
+.milestones {
+  background: rgb(255 253 248 / 55%);
+}
+
+.milestone-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.milestone-item {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.48fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 2.2rem);
+  align-items: stretch;
+  padding: clamp(1rem, 3vw, 1.35rem);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--white);
+  box-shadow: 0 1px 0 rgb(41 43 42 / 3%);
+}
+
+.milestone-media {
+  display: grid;
+  min-height: 180px;
+  overflow: hidden;
+  place-items: center;
+  border: 1px solid rgb(216 208 196 / 85%);
+  border-radius: 2px;
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.milestone-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.milestone-media-logo img {
+  width: min(74%, 190px);
+  height: auto;
+  object-fit: contain;
+}
+
+.milestone-media-stack {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  padding: 0.45rem;
+}
+
+.milestone-media-stack a {
+  display: block;
+  height: 100%;
+  min-height: 160px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.milestone-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 0.35rem;
+}
+
+.milestone-date {
+  margin-bottom: 0.65rem;
+  color: #357f74;
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.milestone-copy h3 {
+  margin-bottom: 0.8rem;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  letter-spacing: -0.025em;
+}
+
+.milestone-copy p:last-child {
+  max-width: 700px;
+  margin-bottom: 0;
+  color: var(--ink-soft);
 }
 
 .contact {
@@ -774,6 +860,14 @@ h1 {
   .project-card {
     min-height: 360px;
   }
+
+  .milestone-item {
+    grid-template-columns: 1fr;
+  }
+
+  .milestone-media {
+    min-height: 220px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -791,6 +885,14 @@ h1 {
 
   .margin-note {
     width: calc(100% - 8px);
+  }
+
+  .milestone-media-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .milestone-media-stack a {
+    min-height: 150px;
   }
 
   .footer-inner {
