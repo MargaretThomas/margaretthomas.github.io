@@ -5,6 +5,7 @@
   --ink-soft: #5f625f;
   --line: #d8d0c4;
   --teal: #47ab9b;
+  --green: #67cc58;
   --blue: #92b7cb;
   --lilac: #d0c4fd;
   --violet: #bcabfd;
@@ -552,20 +553,20 @@ h1 {
   font-size: 1.25rem;
 }
 
-.mark-sound {
+.mark-line {
   background: var(--line);
 }
 
-.mark-community {
-  background: var(--blue);
+.mark-green {
+  background: var(--green);
 }
 
 .mark-teal {
-  background: rgb(71 171 155 / 34%);
+  background: var(--teal);
 }
 
 .mark-blue {
-  background: rgb(146 183 203 / 47%);
+  background: var(--blue)
 }
 
 .mark-lilac {
@@ -573,7 +574,7 @@ h1 {
 }
 
 .mark-purple {
-  background: var(--violet);
+  background: var(--purple);
 }
 
 .project-card h3 {
