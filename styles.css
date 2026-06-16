@@ -552,6 +552,14 @@ h1 {
   font-size: 1.25rem;
 }
 
+.mark-sound {
+  background: var(--line);
+}
+
+.mark-community {
+  background: var(--blue);
+}
+
 .mark-teal {
   background: rgb(71 171 155 / 34%);
 }
