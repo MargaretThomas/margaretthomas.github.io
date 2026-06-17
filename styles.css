@@ -139,16 +139,12 @@ a {
   text-decoration: none;
 }
 
-.wordmark span {
-  display: grid;
+.wordmark img {
+  display: block;
   width: 34px;
   height: 34px;
-  place-items: center;
   transform: rotate(-3deg);
-  border: 1px solid var(--ink);
-  border-radius: 50% 46% 52% 44%;
-  background: var(--lilac);
-  font-size: 0.9rem;
+  object-fit: contain;
 }
 
 .nav-links {
