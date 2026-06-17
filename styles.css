@@ -779,7 +779,7 @@ h1 {
   }
 
   body::before {
-    left: 12px;
+    display: none;
   }
 
   .nav-toggle {
