@@ -775,7 +775,7 @@ h1 {
 
 @media (max-width: 800px) {
   :root {
-    --shell: min(100% - 32px, 680px);
+    --shell: min(100% - 46px, 680px);
   }
 
   body::before {
@@ -803,7 +803,7 @@ h1 {
     display: grid;
     gap: 0;
     visibility: hidden;
-    padding: 0.6rem 16px 1rem;
+    padding: 0.6rem 20px 1rem;
     transform: translateY(-8px);
     border-bottom: 1px solid var(--line);
     background: var(--paper);
