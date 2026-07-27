@@ -74,3 +74,44 @@ if ("IntersectionObserver" in window) {
 
 const year = document.querySelector("#current-year");
 if (year) year.textContent = new Date().getFullYear();
+
+const tagFilters = document.querySelectorAll("[data-filter]");
+const blogCards = document.querySelectorAll(".blog-card[data-tags]");
+const blogEmpty = document.querySelector("[data-blog-empty]");
+
+function filterBlogPosts(selectedTag) {
+  let visiblePosts = 0;
+
+  blogCards.forEach((card) => {
+    const tags = (card.dataset.tags || "")
+      .split("|")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+    const isVisible = selectedTag === "all" || tags.includes(selectedTag);
+
+    card.hidden = !isVisible;
+    if (isVisible) visiblePosts += 1;
+  });
+
+  if (!blogEmpty) return;
+
+  blogEmpty.hidden = visiblePosts > 0;
+  blogEmpty.textContent =
+    blogCards.length === 0
+      ? "The workbench is quiet for now. Notes will appear here when they are ready."
+      : `No notes tagged “${selectedTag}” yet.`;
+}
+
+tagFilters.forEach((filter) => {
+  filter.addEventListener("click", () => {
+    tagFilters.forEach((button) => {
+      const isSelected = button === filter;
+      button.classList.toggle("is-active", isSelected);
+      button.setAttribute("aria-pressed", String(isSelected));
+    });
+
+    filterBlogPosts(filter.dataset.filter);
+  });
+});
+
+if (tagFilters.length) filterBlogPosts("all");
