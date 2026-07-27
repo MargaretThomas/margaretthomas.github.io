@@ -10,7 +10,7 @@ slug: how-i-use-ai-to-build
 
 # How I Use AI to Build
 
-I build software with the use AI.
+I build software with the use of AI.
 
 My process goes like this:
 
@@ -74,8 +74,8 @@ This is the first blog of many.
 Going forward, expect to see blogs about:
 - How I am building Thin Walls: From an idea to a working system
 - How I am building the world around Thin Walls
-- A technical dive into how I am building the mobile app
-- A technical look at how I am building the backend for the mobile app
+- A technical dive into how I am building the Thin Walls mobile app
+- A technical look at how I am building the backend for the Thin Walls mobile app
 
 That's it for this blog. See you next time.
 

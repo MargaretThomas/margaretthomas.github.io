@@ -136,10 +136,37 @@
             </div>
           </div>
 
-          <!-- Future cards belong here and use pipe-separated tags in data-tags. -->
-          <div class="blog-grid" data-blog-grid></div>
+          <div class="blog-grid" data-blog-grid>
+            <article
+              class="blog-card"
+              data-tags="AI-Assisted Development|Behind the Build"
+            >
+              <time datetime="2026-07-27">27 July 2026</time>
+              <h3>How I Use AI to Build</h3>
+              <p>
+                A practical look at how I use ChatGPT to think, Codex to
+                implement, and how I review the changes.
+              </p>
+              <ul class="tag-list" aria-label="Tags">
+                <li>AI-Assisted Development</li>
+                <li>Behind the Build</li>
+              </ul>
+              <a
+                class="blog-card-link"
+                href="posts/how-i-use-ai-to-build.html"
+              >
+                Read more <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          </div>
 
-          <p class="blog-empty" data-blog-empty role="status" aria-live="polite">
+          <p
+            class="blog-empty"
+            data-blog-empty
+            role="status"
+            aria-live="polite"
+            hidden
+          >
             The workbench is quiet for now. Notes will appear here when they
             are ready.
           </p>
