@@ -29,6 +29,16 @@ of software, language, reflection, and human curiosity.
 The site is intentionally lightweight, calm, and content-first. It uses plain
 HTML, CSS, and JavaScript so the focus stays on the work rather than the tooling.
 
+## Blog Structure
+
+- `blog/content/` holds future Markdown source files.
+- `blog/posts/` holds the public HTML pages produced from those files.
+- `blog/index.html` contains the post grid and tag controls.
+
+Future post cards can carry multiple filterable tags in a pipe-separated
+`data-tags` attribute. The visible tag labels should use the same values so each
+filter matches exactly.
+
 ## License
 
 The source code for this site is available under the MIT License.
