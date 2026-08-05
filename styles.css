@@ -1045,6 +1045,13 @@ h1 {
   object-fit: contain;
 }
 
+.post-content .colour-code--cream {
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  background-color: #e6c994;
+  color: #1e4a28;
+}
+
 .post-content figcaption {
   margin-top: 0.65rem;
   color: var(--ink-soft);
