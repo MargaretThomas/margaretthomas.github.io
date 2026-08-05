@@ -1039,6 +1039,12 @@ h1 {
   border: 1px solid var(--line);
 }
 
+.post-content .post-image-standard {
+  height: clamp(280px, 55vw, 460px);
+  background: var(--white);
+  object-fit: contain;
+}
+
 .post-content figcaption {
   margin-top: 0.65rem;
   color: var(--ink-soft);
