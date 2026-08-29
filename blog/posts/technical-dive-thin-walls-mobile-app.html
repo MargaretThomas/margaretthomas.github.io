@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f3ec">
+
+    <title>Inside the Build: The Thin Walls Mobile App | Margaret Thomas</title>
+    <meta
+      name="description"
+      content="A technical look at how Thin Walls is being built, and how decisions around sound reviews, authentication, moderation and testing are shaping the mobile app."
+    >
+    <link
+      rel="canonical"
+      href="https://www.margaretthomas.tech/blog/posts/technical-dive-thin-walls-mobile-app.html"
+    >
+
+    <meta property="og:type" content="article">
+    <meta
+      property="og:url"
+      content="https://www.margaretthomas.tech/blog/posts/technical-dive-thin-walls-mobile-app.html"
+    >
+    <meta
+      property="og:title"
+      content="Inside the Build: The Thin Walls Mobile App | Margaret Thomas"
+    >
+    <meta
+      property="og:description"
+      content="A technical look at how Thin Walls is being built, and how decisions around sound reviews, authentication, moderation and testing are shaping the mobile app."
+    >
+    <meta
+      property="og:image"
+      content="https://www.margaretthomas.tech/assets/portfolio-banner.png"
+    >
+    <meta property="article:published_time" content="2026-08-29">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta
+      name="twitter:title"
+      content="Inside the Build: The Thin Walls Mobile App | Margaret Thomas"
+    >
+    <meta
+      name="twitter:description"
+      content="A technical look at how Thin Walls is being built, and how decisions around sound reviews, authentication, moderation and testing are shaping the mobile app."
+    >
+    <meta
+      name="twitter:image"
+      content="https://www.margaretthomas.tech/assets/portfolio-banner.png"
+    >
+
+    <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../styles.css?v=20260805-3">
+    <script src="../../script.js?v=20260723-1" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="site-nav shell" aria-label="Primary navigation">
+        <a class="wordmark" href="../../" aria-label="Margaret Thomas, home">
+          <img src="../../assets/favicon.ico" alt="" aria-hidden="true">
+          Margaret Thomas
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="../../#about">About</a></li>
+          <li><a href="../" aria-current="page">Blog</a></li>
+          <li><a href="../../#projects">Projects</a></li>
+          <li><a href="../../#milestones">Milestones</a></li>
+          <li><a href="../../#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <article class="blog-post">
+        <a class="back-to-blog" href="../">
+          <span aria-hidden="true">←</span> Back to all blogs
+        </a>
+
+        <header class="post-header">
+          <p class="eyebrow">From the workbench</p>
+          <h1>Inside the Build: The Thin Walls Mobile App</h1>
+          <p class="post-meta">
+            <time datetime="2026-08-29">29 August 2026</time>
+          </p>
+          <ul class="tag-list" aria-label="Tags">
+            <li>Thin Walls</li>
+            <li>Behind the Build</li>
+            <li>AI-Assisted Development</li>
+          </ul>
+        </header>
+
+        <div class="post-content">
+          <p>
+            This is a story on how a product about something subjective and
+            socially sensitive — the sounds people experience in shared
+            buildings — became a structured mobile application.
+          </p>
+
+          <p>
+            The engineering decisions are closely connected to the product
+            decisions: what counts as a review, what remains anonymous, when
+            authentication is required, how new locations enter the system,
+            and where moderation belongs.
+          </p>
+
+          <h2>What Thin Walls is</h2>
+
+          <p>
+            Thin Walls is a platform for helping people build more realistic
+            expectations about sound in apartments, townhouses, hotels and
+            student accommodation.
+          </p>
+
+          <p>The mobile app currently allows people to:</p>
+
+          <ul>
+            <li>browse locations</li>
+            <li>switch between list and map views of locations</li>
+            <li>read sound-focused location reviews</li>
+            <li>create reviews using a curated sound catalogue</li>
+            <li>propose missing locations</li>
+            <li>track submitted locations</li>
+            <li>manage their own reviews</li>
+          </ul>
+
+          <h2>Technical stack</h2>
+
+          <ul>
+            <li><strong>Mobile:</strong> React Native + Expo + TypeScript</li>
+            <li><strong>Navigation:</strong> Expo Router</li>
+            <li><strong>Authentication:</strong> Firebase Authentication</li>
+            <li><strong>API:</strong> .NET</li>
+            <li><strong>Database:</strong> PostgreSQL</li>
+            <li><strong>Hosting:</strong> Azure</li>
+            <li><strong>Maps:</strong> react-native-maps</li>
+            <li><strong>Location search:</strong> OpenStreetMap Nominatim</li>
+            <li><strong>Builds:</strong> Expo Application Services</li>
+          </ul>
+
+          <p>High-level flow:</p>
+
+          <p>
+            <code class="inline-code">
+              React Native app → Firebase identity → Thin Walls .NET API →
+              PostgreSQL
+            </code>
+          </p>
+
+          <h2>Building in vertical slices</h2>
+
+          <p>
+            Thin Walls did not begin with its current architecture. The build
+            evolved roughly like this:
+          </p>
+
+          <p>
+            <code class="inline-code">
+              UI → dummy data → API endpoints → authentication → persistence →
+              moderation → installable builds
+            </code>
+          </p>
+
+          <p>
+            Starting with local data let me work through navigation and product
+            flows before the backend existed.
+          </p>
+
+          <p>
+            Then, piece by piece, those local boundaries were replaced with
+            real API endpoints and authenticated workflows.
+          </p>
+
+          <p>
+            I've tried to keep the same principle throughout the project: build
+            small pieces, test them end to end, and only add more complexity
+            when the app needs it.
+          </p>
+
+          <h2>Modelling something subjective: Sound</h2>
+
+          <p>
+            One of the most important design choices was deciding what a Thin
+            Walls review actually contains. A Thin Walls review isn't a star
+            rating, decibel measurement or audio recording. Instead, users
+            select the sounds they experienced from a curated
+            <code class="inline-code">SoundCatalogue</code>.
+          </p>
+
+          <p>At its simplest:</p>
+
+          <p>
+            A <code class="inline-code">Location</code> is linked to many
+            <code class="inline-code">Review</code> objects which are linked to
+            selected <code class="inline-code">SoundCatalogue</code> items.
+            This gives Thin Walls structured, comparable data.
+          </p>
+
+          <p>
+            The sound catalogue contains an internal relative-loudness value
+            for ordering sounds, but that isn't presented as a measurement.
+            Reviewer identity follows a similar boundary. A review belongs to a
+            Firebase user internally, while remaining anonymous in the public
+            interface.
+          </p>
+
+          <p>
+            The app’s promise that reviews remain anonymous to the public is
+            built into how reviewer identity is stored and displayed.
+          </p>
+
+          <h2>Authentication only when ownership matters</h2>
+
+          <p>People can browse locations and read reviews without signing in.</p>
+
+          <p>
+            Authentication becomes necessary when ownership matters: creating,
+            editing or deleting a review, proposing a new location, or tracking
+            a submission.
+          </p>
+
+          <p>
+            Firebase handles authentication and confirms who the user is.
+          </p>
+
+          <p>
+            The Thin Walls API then uses that identity to manage the app’s data
+            and control which actions the user is allowed to perform.
+          </p>
+
+          <h2>Growing the location dataset carefully</h2>
+
+          <p>
+            Eventually, someone will search for a building that Thin Walls
+            doesn't know about yet.
+          </p>
+
+          <p>
+            Instead of allowing new locations to appear publicly immediately,
+            the app creates a separate contribution flow:
+          </p>
+
+          <p>
+            <code class="inline-code">
+              Search for the new location → select location → add sound review
+              → submit → moderation
+            </code>
+          </p>
+
+          <p>
+            The proposed location and its first review enter a pending state.
+            This lets users help grow the Thin Walls location database while
+            keeping new submissions hidden until they’ve been reviewed.
+          </p>
+
+          <h2>What native builds taught me about testing</h2>
+
+          <p>
+            The map feature gave me one of the clearest mobile-development
+            lessons so far.
+          </p>
+
+          <p>
+            Automated tests can confirm that coordinates are valid and
+            components receive the right data. They can't prove that a native
+            map provider or API key is correctly configured inside the
+            installed application.
+          </p>
+
+          <p>
+            Testing installable builds also surfaced issues that development
+            tooling hadn't, including incorrect initial routing and
+            configuration errors reaching the UI.
+          </p>
+
+          <p>My verification process now looks more like:</p>
+
+          <p>
+            <code class="inline-code">
+              source code checks → automated tests → app build → physical-device
+              verification
+            </code>
+          </p>
+
+          <p>
+            Each stage tells me something different. A passing test suite gives
+            me confidence in the code. A working standalone app on my phone
+            gives me confidence that the app actually behaves the way I expect
+            it to. For mobile development, I’ve learned that I need both.
+          </p>
+
+          <h2>Building with AI without handing over the decisions</h2>
+
+          <p>
+            AI use is part of the Thin Walls development workflow, with each
+            part of the process having a clear role.
+          </p>
+
+          <ol>
+            <li>
+              I define the intent, make the product decisions, and shape the
+              architecture.
+            </li>
+            <li>
+              ChatGPT helps me think through the implementation, surface blind
+              spots, review decisions, and turn the work into a clear prompt
+              for Codex.
+            </li>
+            <li>Codex makes the code changes based on that implementation prompt.</li>
+            <li>
+              I review the changes, run the app, test the behaviour, make
+              adjustments where needed, and then commit the work.
+            </li>
+          </ol>
+
+          <p>The workflow looks roughly like this:</p>
+
+          <p>
+            <code class="inline-code">
+              intent and decisions → ChatGPT review and prompt design → Codex
+              implementation → human review → runtime testing → adjustments →
+              commit
+            </code>
+          </p>
+
+          <p>
+            I also keep the development prompts versioned alongside the project
+            documentation. The code records what was built, while the prompts
+            preserve some of the reasoning and implementation intent behind
+            those changes.
+          </p>
+
+          <h2>Still building</h2>
+
+          <p>
+            There are already parts of Thin Walls that I know will need more
+            attention as the app grows, including better behaviour on slow
+            networks, review drafts persistence and map clustering.
+          </p>
+
+          <p>
+            One of the things this project keeps teaching me is that not every
+            future problem needs to be solved today. Sometimes the better
+            decision is to build the simplest version that works, test it
+            properly, and wait until the product gives me a real reason to add
+            more complexity.
+          </p>
+
+          <p>
+            Thin Walls is still actively being built, so I expect that list to
+            keep changing as more of the app moves from code into real-world
+            use.
+          </p>
+
+          </br>
+          
+          <p>That's it for this blog. See you next time.</p>
+
+          <p>
+            Happy building,<br>
+            Margaret
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>&copy; <span id="current-year">2026</span> Margaret Thomas</p>
+        <a href="../">Back to all notes <span aria-hidden="true">→</span></a>
+      </div>
+    </footer>
+  </body>
+</html>
