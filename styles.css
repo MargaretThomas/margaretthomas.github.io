@@ -871,6 +871,7 @@ h1 {
 }
 
 .blog-card {
+  position: relative;
   display: flex;
   min-height: 360px;
   padding: clamp(1.4rem, 3vw, 2rem);
@@ -885,7 +886,8 @@ h1 {
     box-shadow 180ms ease;
 }
 
-.blog-card:hover {
+.blog-card:hover,
+.blog-card:focus-within {
   transform: translateY(-4px);
   border-color: #bdb3a6;
   box-shadow: var(--shadow);
@@ -927,6 +929,21 @@ h1 {
   letter-spacing: 0.04em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.blog-card-link::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.blog-card-link:focus-visible {
+  outline: none;
+}
+
+.blog-card-link:focus-visible::after {
+  outline: 3px solid var(--purple);
+  outline-offset: 4px;
 }
 
 .blog-empty {
