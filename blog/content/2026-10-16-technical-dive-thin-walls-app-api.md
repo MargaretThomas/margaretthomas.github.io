@@ -38,7 +38,7 @@ Initially, I used hardcoded data, followed by JSON-backed datasets. This kept in
 
 ## Connecting the app and API
 
-On 13 January 2026, I used GPT-5.2-Codex to review the API codebase.
+On 13 January 2026, I used Codex to review the API codebase. I like using a more recent model when reviewing code because it can provide more accurate and relevant feedback.
 
 The following day, I deployed the API and merged the first mobile-app pull request replacing dummy resource data with API responses.
 
@@ -60,11 +60,13 @@ Keeping tasks small and objectives clear helped me maintain momentum across both
 
 February was a busy development month.
 
-I added API-side Firebase token validation and authenticated endpoints for creating, editing, viewing and managing reviews.
+I added API-side Firebase token validation and authenticated endpoints for creating, editing and viewing reviews.
 
 One important design decision was keeping reviews anonymous in the public interface while associating them with authenticated users internally.
 
 I want people to feel comfortable sharing their sound experiences without having their names publicly attached to their reviews. Internally, the API still needs user identity for ownership, rate limiting and moderation.
+
+On 24–25 February, I added an authenticated location-submission flow, allowing signed-in users to submit new locations alongside review drafts. This extended the API beyond browsing and reviewing existing locations to supporting contributions from users.
 
 ### Designing the SoundCatalogue
 
@@ -82,9 +84,9 @@ Sounds are ordered by category, then by descending relative loudness, and finall
 .ThenBy(sound => sound.Name)
 ```
 
-The categories and relative-loudness values aren't displayed to users. They help organise the sound picker so that the experience feels straightforward.
+The categories and relative-loudness values aren't displayed to users, although they are included in the API response. They provide a consistent ordering for the mobile app to consume.
 
-I like that a data-modelling decision can improve the user experience without adding complexity to the interface.
+I like that a data-modelling decision can support a straightforward user experience without adding complexity to the interface.
 
 **[Diagram: SoundCatalogue design and ordering]**
 
