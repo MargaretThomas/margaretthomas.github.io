@@ -3,7 +3,7 @@
 
 title: "Inside the Build: The Thin Walls App API"
 summary: "A technical look at how I built the Thin Walls App API, from its layered .NET architecture and JSON-backed beginnings to authenticated reviews, PostgreSQL and a growing backend."
-date: 2026-10-16
+date: 2026-10-19
 tags:
   - Thin Walls
   - Behind the Build
