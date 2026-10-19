@@ -18,7 +18,7 @@ I started developing the Thin Walls mobile app on 19 December 2025. It was my fi
 
 I began with the app, using dummy data to develop the screens and understand what the backend would need to provide.
 
-On 24 December, I made the first commit to the Thin Walls App API.
+On 24 December 2025, I made the first commit to the Thin Walls App API.
 
 ## Starting small
 
